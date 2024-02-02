@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-
+include 'index.php';
 $sql = "SELECT Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat FROM production";
 
 $result = mysqli_query($conn, $sql);
@@ -15,6 +15,7 @@ $result = mysqli_query($conn, $sql);
     <title>Display Table</title>
 </head>
 <body>
+    <h1>Table Production</h1>
     <table border="1">
         <tr>
             <th>Production Line</th>

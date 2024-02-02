@@ -1,5 +1,17 @@
+body
+{
+    font-family: Arial, sans-serif;
+}
 
+h1{ 
+    color: black;    
+    margin-left: 17rem;
+    margin-top: 6rem;}
+
+/*table*/
   table {
+    margin-left: 17rem;
+    margin-top: 3rem;
     width:100rem;
     font-size: 1rem;
     border-collapse: collapse;
@@ -12,3 +24,47 @@
   {
     text-align: right;
   }
+
+/*display*/
+  .narbar {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    }
+    
+    .narbar a {
+      float: left;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.3rem;
+      margin-right: 3%;
+    }
+
+/*sidebar*/
+    .sidebar {
+        height: 100%;
+        width: 15rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #534e4e;
+        margin-top: 3.45rem;
+        padding-top: 1rem;
+        
+    }
+    
+    .sidebar a {
+        padding: 1rem;
+        text-decoration: none;
+        font-size: 1.1rem;
+        color: white;
+        display: block;
+    }
+    
+    .sidebar a:hover {
+        background-color: #b5b4b4;
+    }
+    
