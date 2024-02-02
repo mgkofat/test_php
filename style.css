@@ -1,0 +1,14 @@
+
+  table {
+    width:100rem;
+    font-size: 1rem;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  tr:nth-child(even){
+    background-color: rgba(216, 220, 226, 0.788); 
+  }
+  .num
+  {
+    text-align: right;
+  }
