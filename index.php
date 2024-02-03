@@ -11,7 +11,7 @@
         </nav>
         <div class="sidebar">
             <a href="display_table.php">Table</a>
-            <a href="add_display.php">Add</a>
+            <a href="add_table.php">Add</a>
          </div>
     </body>
 </head>

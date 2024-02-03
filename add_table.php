@@ -21,9 +21,9 @@
 
 
         if (mysqli_query($conn, $insertQuery)) {
-            echo "<script>alert('Data inserted successfully!');</script>";
+            echo "<script>alert('Data Inserted Success');</script>";
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error: Inserting" . mysqli_error($conn);
         }
     }
 

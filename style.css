@@ -12,7 +12,7 @@
   table {
     margin-left: 17rem;
     margin-top: 3rem;
-    width:100rem;
+    width:110rem;
     font-size: 1rem;
     border-collapse: collapse;
     text-align: left;
@@ -68,3 +68,28 @@
         background-color: #b5b4b4;
     }
     
+    .update_button {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .update_button:hover {
+      background-color: #45a049;
+    }
+
+    .remove_button {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background-color: #d80d0d;
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .remove_button:hover {
+      background-color: #d80d0d;
+    }
