@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: black;
+    margin-left: 18rem;
+    margin-top: 6rem;
+}
+
+form {
+    max-width: 600px;
+    margin: 3% 15rem;
+    margin-left: 32rem;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 1.2rem;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box;
+}
+
+form input[type="submit"],
+form button {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 8.3rem;
+    margin-top: 1rem;
+}
+
+form input[type="submit"]:hover,
+form button:hover {
+    background-color: #555;
+}
