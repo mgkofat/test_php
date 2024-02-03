@@ -44,6 +44,7 @@ if (isset($_GET['id'])) {
 
         if (mysqli_query($conn, $updateSql)) {
             echo "<script>alert('Data Update Success');</script>";
+            exit();
         } else {
             echo "Error: Updating" . mysqli_error($conn);
         }
@@ -90,13 +91,13 @@ if (isset($_GET['id'])) {
         <input type="text" name="qty_open" value="<?php echo $row['QTY_Open']; ?>">
 
         <label for="order_date">Order Date:</label>
-        <input type="text" name="order_date" value="<?php echo $row['Order_Date']; ?>">
+        <input type="date" name="order_date" value="<?php echo $row['Order_Date']; ?>">
 
         <label for="release_date">Release Date:</label>
-        <input type="text" name="release_date" value="<?php echo $row['Release_Date']; ?>">
+        <input type="date" name="release_date" value="<?php echo $row['Release_Date']; ?>">
 
         <label for="due_date">Due Date:</label>
-        <input type="text" name="due_date" value="<?php echo $row['Due_Date']; ?>">
+        <input type="date" name="due_date" value="<?php echo $row['Due_Date']; ?>">
 
         <label for="sales_job">Sales/Job:</label>
         <input type="text" name="sales_job" value="<?php echo $row['Sales/Job']; ?>">

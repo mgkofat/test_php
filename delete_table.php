@@ -9,10 +9,10 @@ if (isset($_GET['id'])) {
         $sql = "DELETE FROM production WHERE ID = $id";
 
         if (mysqli_query($conn, $sql)) {
-            header("Location: display_table.php");
+            echo "<script>alert('Data Delete Success');</script>";
             exit();
         } else {
-            echo "Error: " . mysqli_error($conn);
+            echo "Error: Deleting" . mysqli_error($conn);
         }
     }
 
