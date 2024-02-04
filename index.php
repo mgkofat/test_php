@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Production</title>
-    <body>
+</head>
+<body>
         <nav class="narbar">
             <a>Production</a>
         </nav>
@@ -14,5 +15,4 @@
             <a href="add_table.php">Add</a>
          </div>
     </body>
-</head>
 </html>
