@@ -42,7 +42,7 @@
     </head>
     <body>
         <h1>Add</h1>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="production_line">Production Line:</label>
             <input type="text" name="production_line" required><br>
 
@@ -89,6 +89,32 @@
                 <input type="submit" value="Submit">
                 <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
             </div>
+        <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault(); 
 
+                var formData = new FormData(this);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', this.action, true);
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        alert('Data Inserted Success');
+                        window.location.href = 'display_table.php';
+                    } else {
+                        alert('Error: Inserting' + xhr.responseText);
+                    }
+                };
+
+                xhr.onerror = function() {
+                    alert('Request failed');
+                };
+
+                xhr.send(formData);
+            });
+        </script>
     </body>
     </html>
+
+
+    

@@ -45,7 +45,6 @@ if (isset($_GET['id'])) {
         if (mysqli_query($conn, $updateSql)) {
             echo "<script>alert('Data Update Success');</script>";
             echo "<script>window.location.href = 'display_table.php';</script>";
-
         } else {
             echo "Error: Updating" . mysqli_error($conn);
         }
@@ -64,7 +63,7 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <h1>Edit Data</h1>
-    <form method="post">
+    <form id="myForm"  method="post">
         <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
 
         <label for="production_line">Production Line:</label>
@@ -108,8 +107,32 @@ if (isset($_GET['id'])) {
         <div class="form-buttons">
                 <input type="submit" value="Submit">
                 <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
-            </div>    </form>
+            </div></form>
+    
+            <script>
+            document.getElementById('myForm').addEventListener('submit', function(event) {
+                event.preventDefault();
 
+                var formData = new FormData(this);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', this.action, true);
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        alert('Data Update Success');
+                        window.location.href = 'display_table.php';
+                    } else {
+                        alert('Error: Inserting' + xhr.responseText);
+                    }
+                };
+
+                xhr.onerror = function() {
+                    alert('Request failed');
+                };
+
+                xhr.send(formData);
+            });
+        </script>
     <?php
     mysqli_close($conn);
     ?>
