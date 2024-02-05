@@ -17,40 +17,43 @@ if (isset($_GET['id'])) {
     }
 
     ?>
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_delete.css">
-    <title>Confirm Deletion</title>
-</head>
-<body>
-    <h1>Confirm Delete</h1>
-    <p>Are you sure you want to delete?</p>
-    <form id="deleteForm" method="post" action="">
-        <input type="submit" name="delete" value="Submit" onclick="deleteData()">
-        <a href="display_table.php" class="cancel">Cancel</a>
-    </form>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style_delete.css">
+        <title>Confirm Deletion</title>
+    </head>
+    <body>
+        <h1>Confirm Delete</h1>
+        <p>Are you sure you to delete?</p>
+        <form method="post" action="" onsubmit="deleteData()">
+            <input type="submit" name="delete" value="Submit">
+            <a href="display_table.php" class="cancel">Cancel</a>
+        </form>
 
-    <script>
-        function deleteData() {
-            var xmlhttp = new XMLHttpRequest();
+        <script>
+            function deleteData() {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            alert('Data Delete Success');
+                            window.location.href = 'display_table.php';
+                        } else {
+                            alert('Error: ' + xhr.statusText);
+                        }
+                    }
+                };
 
-            xmlhttp.onreadystatechange = function () {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    alert('Data Delete Success');
-                    window.location.href = 'display_table.php';
-                }
-            };
-            xmlhttp.open("POST", "delete.php?id=<?php echo $id; ?>", true);
-            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xmlhttp.send("delete=1");
-        }
-    </script>
-</body>
-</html>
-
+                xhr.open('POST', 'delete_table.php?id=<?php echo $id; ?>', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send();
+            }
+        </script>
+    </body>
+    </html>
     <?php
 } else {
     header("Location: display_table.php");
