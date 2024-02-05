@@ -10,10 +10,10 @@ if (isset($_GET['id'])) {
 
         if (mysqli_query($conn, $sql)) {
             echo "<script>alert('Data Delete Success');</script>";
-            echo "<script>window.location.href = 'display_table.php';</script>";
             exit();
         } else {
             echo "Error: Deleting" . mysqli_error($conn);
+            echo "<script>window.location.href = 'display_table.php';</script>";
         }
     }
 
@@ -38,6 +38,7 @@ if (isset($_GET['id'])) {
     <?php
 } else {
     header("Location: display_table.php");
+
 }
 
 mysqli_close($conn);
