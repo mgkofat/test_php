@@ -94,3 +94,34 @@
       .remove_button:hover {
         background-color: #a80909;
       }
+
+      .search-container {
+        width: 60rem;
+    }
+    
+    .search-container form {
+        display: flex;
+        align-items: center;
+        margin-left: 20rem;
+        height: 5rem;
+    }
+    
+    .search-container input[type="text"] {
+        width: 15rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-right: 0.1rem;
+    }
+    
+    .search-container input[type="submit"] {
+        background-color: #595959;
+        color: white;
+        border: 0.1rem;
+        border-radius: 0.2rem;
+        border-style: none;
+        cursor: pointer;
+        margin-top: 0.9rem;
+        margin-bottom: 2.9rem;
+        margin-left: 0;
+    }
+    

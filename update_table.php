@@ -44,7 +44,8 @@ if (isset($_GET['id'])) {
 
         if (mysqli_query($conn, $updateSql)) {
             echo "<script>alert('Data Update Success');</script>";
-            exit();
+            echo "<script>window.location.href = 'display_table.php';</script>";
+
         } else {
             echo "Error: Updating" . mysqli_error($conn);
         }
