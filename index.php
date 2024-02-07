@@ -12,13 +12,13 @@
     
         if (mysqli_query($conn, $updateSql)) {
             header("Location: login_form.php");
+            session_unset();
+            session_destroy();
             exit();
         } else {
             echo "Error updating record: " . mysqli_error($conn);
         }
         mysqli_close($conn);
-        session_unset();
-        session_destroy();
     }
     
     ?>

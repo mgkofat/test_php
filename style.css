@@ -137,3 +137,18 @@
   cursor: pointer;
   background-color: #333;
 }
+.container {
+  margin-top: 6rem;
+}
+
+.text {
+  color: black;
+  margin-left: 17rem;
+  margin-top: 1rem;
+}
+
+.error-message {
+  color: red;
+  margin-left: 17rem;
+  margin-top: 1rem;
+}

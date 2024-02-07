@@ -2,6 +2,8 @@
 session_start();
 include 'config.php';
 
+$error_message = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $input_username = $_POST['username'];
     $input_password = $_POST['password'];
@@ -13,27 +15,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($result);
         $session = bin2hex(random_bytes(32));
         $_SESSION['username'] = $input_username;
-        $_SESSION['session'] = $session; 
+        $_SESSION['session'] = $session;
 
-        $updateSql = "UPDATE user SET session = '$session' WHERE username = '$input_username'";
-        mysqli_query($conn, $updateSql);
+        if (empty($row['session'])) {
+            $updateSql = "UPDATE user SET session = '$session' WHERE username = '$input_username'";
+            mysqli_query($conn, $updateSql);
 
-        header("Location: index.php");
-        echo "login success";
+            header("Location: index.php");
+            exit;
+        } else {
+            if ($_SESSION['session'] != $row['session']) {
+                session_destroy();
+                $error_message = "Account has been login into another device.";
+            }
+        }
     } else {
-        echo "login failed";
         $error_message = "Invalid username or password";
-    } 
+    }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="style_login.css">
-
 </head>
 <body>
     <div class="container">
@@ -53,6 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="inner"></div>
                 <button type="submit">Login</button>
             </div>
+             <?php if ($error_message !== "") { ?>
+            <div class="error-message"><?php echo $error_message; ?></div>
+        <?php } ?>
         </form>
     </div>
 </body>
