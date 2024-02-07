@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 include 'index.php';
-session_start();
+
     
 if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
     header("Location: login_form.php");
@@ -34,10 +34,12 @@ if (isset($_GET['id'])) {
     <body>
         <h1>Confirm Delete</h1>
         <p>Are you sure you to delete?</p>
-        <form method="post" action="" onsubmit="deleteData()">
-            <input type="submit" name="delete" value="Submit">
+        <div class="container">
+        <form id="delete" method="post" action="" onsubmit="deleteData()">
+            <input type="submit" name="delete" value="Submit" class="submit-btn">
             <a href="display_table.php" class="cancel">Cancel</a>
         </form>
+    </div>
 
         <script>
             function deleteData() {
