@@ -1,6 +1,12 @@
     <?php
     include 'config.php';
     include 'index.php';
+    session_start();
+    
+if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
+    header("Location: login_form.php");
+    exit();
+}
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productionLine = mysqli_real_escape_string($conn, $_POST['production_line']);
         $id = mysqli_real_escape_string($conn, $_POST['id']);
@@ -28,10 +34,9 @@
             echo "Error: Inserting" . mysqli_error($conn);
         }
     }
-
+    
     mysqli_close($conn);
     ?>
-
     <!DOCTYPE html>
     <html lang="en">
     <head>

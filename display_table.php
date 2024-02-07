@@ -1,6 +1,12 @@
 <?php
 include 'config.php';
 include 'index.php';
+session_start();
+    
+if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
+    header("Location: login_form.php");
+    exit();
+}
 
 if (isset($_GET['search'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_GET['search']);
@@ -33,16 +39,15 @@ $result = mysqli_query($conn, $sql);
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_update.css">
     <title>Display Table</title>
 </head>
 <body>
     <h1>Table Production</h1>
 
     <div class="search-container">
-    <form action="" method="GET">
+    <form action="" method="GET" class="display">
         <input type="text" name="search" placeholder="Search...">
-        <input type="submit" class='search-submit' value="Search">
+        <input type="submit" value="Search">
     </form>
 </div>
 

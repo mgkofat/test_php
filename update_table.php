@@ -1,6 +1,12 @@
 <?php
 include 'config.php';
 include 'index.php';
+session_start();
+    
+if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
+    header("Location: login_form.php");
+    exit();
+}
 function sanitizeInput($input) {
     return htmlspecialchars(strip_tags($input));
 }

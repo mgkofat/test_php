@@ -1,6 +1,12 @@
 <?php
 include 'config.php';
 include 'index.php';
+session_start();
+    
+if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
+    header("Location: login_form.php");
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
