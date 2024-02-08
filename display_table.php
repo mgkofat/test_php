@@ -1,13 +1,7 @@
 <?php
-include 'config.php';
-include 'index.php';
-
-    
-if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
-    header("Location: login_form.php");
-    exit();
-}
-
+include 'include/config.php';
+include 'include/check_session.php';
+include 'include/check_logout.php';
 if (isset($_GET['search'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_GET['search']);
     $sql = "SELECT Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat FROM production 
@@ -32,6 +26,7 @@ if (isset($_GET['search'])) {
 
 $result = mysqli_query($conn, $sql);
 ?>
+<!-- search and pull database -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +37,7 @@ $result = mysqli_query($conn, $sql);
     <title>Display Table</title>
 </head>
 <body>
+    <?php include 'include/index.php'; ?>
     <h1>Table Production</h1>
 
     <div class="search-container">
@@ -49,7 +45,8 @@ $result = mysqli_query($conn, $sql);
         <input type="text" name="search" placeholder="Search...">
         <input type="submit" value="Search">
     </form>
-</div>
+    </div>
+
 
     <table border="1">
         <tr>

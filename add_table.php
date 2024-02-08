@@ -1,12 +1,8 @@
     <?php
-    include 'config.php';
-    include 'index.php';
-
+    include 'include/config.php';
+    include 'include/check_session.php';
+    include 'include/check_logout.php';
     
-if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
-    header("Location: login_form.php");
-    exit();
-}
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productionLine = mysqli_real_escape_string($conn, $_POST['production_line']);
         $id = mysqli_real_escape_string($conn, $_POST['id']);
@@ -37,15 +33,20 @@ if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
     
     mysqli_close($conn);
     ?>
+    <!-- insert database -->
+
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style_add.css">
+        <link rel="stylesheet" href="style.css">
         <title>Add</title>
     </head>
     <body>
+    <?php include 'include/index.php'; ?>
         <h1>Add</h1>
         <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <label for="production_line">Production Line:</label>

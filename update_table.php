@@ -1,12 +1,8 @@
 <?php
-include 'config.php';
-include 'index.php';
+    include 'include/config.php';
+    include 'include/check_session.php';
+    include 'include/check_logout.php';
 
-    
-if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
-    header("Location: login_form.php");
-    exit();
-}
 function sanitizeInput($input) {
     return htmlspecialchars(strip_tags($input));
 }
@@ -57,7 +53,7 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
-
+<!-- update database -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,9 +61,11 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style_update.css">
+    <link rel="stylesheet" href="style.css">
     <title>Edit Data</title>
 </head>
 <body>
+<?php include 'include/index.php'; ?>
     <h1>Edit Data</h1>
     <form id="myForm"  method="post">
         <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">

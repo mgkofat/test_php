@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'config.php';
+include 'include/config.php';
 
 $error_message = "";
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateSql = "UPDATE user SET session = '$session' WHERE username = '$input_username'";
             mysqli_query($conn, $updateSql);
 
-            header("Location: index.php");
+            header("Location: display_table.php");
             exit;
         } else {
             if ($_SESSION['session'] != $row['session']) {
@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<!-- check login -->
 
 <!DOCTYPE html>
 <html>

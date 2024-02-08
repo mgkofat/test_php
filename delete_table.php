@@ -1,13 +1,8 @@
 <?php
-include 'config.php';
-include 'index.php';
-
+    include 'include/config.php';
+    include 'include/check_session.php';
+    include 'include/check_logout.php';
     
-if (empty($_SESSION['username']) && empty($_SESSION['session'])) {
-    header("Location: login_form.php");
-    exit();
-}
-
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($conn, $_GET['id']);
 
@@ -23,15 +18,19 @@ if (isset($_GET['id'])) {
     }
 
     ?>
+    <!-- delete database -->
+
     <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style_delete.css">
+        <link rel="stylesheet" href="style.css">
         <title>Confirm Deletion</title>
     </head>
     <body>
+    <?php include 'include/index.php'; ?>
         <h1>Confirm Delete</h1>
         <p>Are you sure you to delete?</p>
         <div class="container">
