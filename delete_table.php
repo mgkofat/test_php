@@ -18,9 +18,15 @@ if (isset($_GET['id'])) {
     }
 
     ?>
-    <!-- delete database -->
+    <?php
+} else {
+    header("Location: display_table.php");
+    exit();
+}
 
-    <!DOCTYPE html>
+mysqli_close($conn);
+?><?php include 'include/function_del.php'; ?>
+   <!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -61,11 +67,3 @@ if (isset($_GET['id'])) {
         </script>
     </body>
     </html>
-    <?php
-} else {
-    header("Location: display_table.php");
-    exit();
-}
-
-mysqli_close($conn);
-?>

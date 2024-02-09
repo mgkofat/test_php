@@ -1,59 +1,4 @@
-<?php
-    include 'include/config.php';
-    include 'include/check_session.php';
-    include 'include/check_logout.php';
-
-function sanitizeInput($input) {
-    return htmlspecialchars(strip_tags($input));
-}
-
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM production WHERE ID = $id";
-    $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $productionLine = sanitizeInput($_POST['production_line']);
-        $itemNumber = sanitizeInput($_POST['item_number']);
-        $description = sanitizeInput($_POST['description']);
-        $productionRate = sanitizeInput($_POST['production_rate']);
-        $rateHours = sanitizeInput($_POST['rate_hours']);
-        $qualityOrdered = sanitizeInput($_POST['quality_ordered']);
-        $qualityComplete = sanitizeInput($_POST['quality_complete']);
-        $qtyOpen = sanitizeInput($_POST['qty_open']);
-        $orderDate = sanitizeInput($_POST['order_date']);
-        $releaseDate = sanitizeInput($_POST['release_date']);
-        $dueDate = sanitizeInput($_POST['due_date']);
-        $salesJob = sanitizeInput($_POST['sales_job']);
-        $woStat = sanitizeInput($_POST['wo_stat']);
-
-        $updateSql = "UPDATE production SET 
-            Production_Line = '$productionLine',
-            Item_Number = '$itemNumber',
-            Description = '$description',
-            Production_Rate = '$productionRate',
-            Rate_Hours = '$rateHours',
-            Quality_Ordered = '$qualityOrdered',
-            Quality_Complete = '$qualityComplete',
-            QTY_Open = '$qtyOpen',
-            Order_Date = '$orderDate',
-            Release_Date = '$releaseDate',
-            Due_Date = '$dueDate',
-            `Sales/Job` = '$salesJob',
-            WO_Stat = '$woStat'
-            WHERE ID = $id";
-
-        if (mysqli_query($conn, $updateSql)) {
-            echo "<script>alert('Data Update Success');</script>";
-            echo "<script>window.location.href = 'display_table.php';</script>";
-        } else {
-            echo "Error: Updating" . mysqli_error($conn);
-        }
-    }
-}
-?>
-<!-- update database -->
+<?php include 'include/function_update.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,51 +14,187 @@ if (isset($_GET['id'])) {
     <h1>Edit Data</h1>
     <form id="myForm"  method="post">
         <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
+        
+        <div>
+            <label for="production_line">Production Line:</label>
+            <input type="text" id="production_line" name="production_line" value="<?php echo $row['Production_Line']; ?>">
+            <div class="error" id="error_prdline"></div>
+        </div>
 
-        <label for="production_line">Production Line:</label>
-        <input type="text" name="production_line" value="<?php echo $row['Production_Line']; ?>">
+        <div>
+            <label for="id">ID:</label>
+            <input type="text" id="ID" name="id" value="<?php echo $row['ID']; ?>">
+            <div class="error" id="error_IDline"></div>
+        </div>
 
-        <label for="item_number">Item Number:</label>
-        <input type="text" name="item_number" value="<?php echo $row['Item_Number']; ?>">
+        <div>
+            <label for="item_number">Item Number:</label>
+            <input type="text" id="item_number" name="item_number" value="<?php echo $row['Item_Number']; ?>">
+            <div class="error" id="error_item_number"></div>
+        </div>
 
-        <label for="description">Description:</label>
-        <input type="text" name="description" value="<?php echo $row['Description']; ?>">
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" value="<?php echo $row['Description']; ?>">
+            <div class="error" id="error_description"></div>
+        </div>
 
-        <label for="production_rate">Production Rate:</label>
-        <input type="text" name="production_rate" value="<?php echo $row['Production_Rate']; ?>">
+        <div>
+            <label for="production_rate">Production Rate:</label>
+            <input type="text" id="production_rate" name="production_rate" value="<?php echo $row['Production_Rate']; ?>">
+            <div class="error" id="error_production_rate"></div>
+        </div>
 
-        <label for="rate_hours">Rate Hours:</label>
-        <input type="text" name="rate_hours" value="<?php echo $row['Rate_Hours']; ?>">
+        <div>
+            <label for="rate_hours">Rate Hours:</label>
+            <input type="text" id="rate_hours" name="rate_hours" value="<?php echo $row['Rate_Hours']; ?>">
+            <div class="error" id="error_rate_hours"></div>
+        </div>
 
-        <label for="quality_ordered">Quality Ordered:</label>
-        <input type="text" name="quality_ordered" value="<?php echo $row['Quality_Ordered']; ?>">
+        <div>
+            <label for="quality_ordered">Quality Ordered:</label>
+            <input type="text" id="quality_ordered" name="quality_ordered" value="<?php echo $row['Quality_Ordered']; ?>">
+            <div class="error" id="error_quality_ordered"></div>
+        </div>
 
-        <label for="quality_complete">Quality Complete:</label>
-        <input type="text" name="quality_complete" value="<?php echo $row['Quality_Complete']; ?>">
+        <div>
+            <label for="quality_complete">Quality Complete:</label>
+            <input type="text" id="quality_complete" name="quality_complete" value="<?php echo $row['Quality_Complete']; ?>">
+            <div class="error" id="error_quality_complete"></div>
+        </div>
 
-        <label for="qty_open">QTY Open:</label>
-        <input type="text" name="qty_open" value="<?php echo $row['QTY_Open']; ?>">
+        <div>
+            <label for="qty_open">QTY Open:</label>
+            <input type="text" id="qty_open" name="qty_open" value="<?php echo $row['QTY_Open']; ?>">
+            <div class="error" id="error_qty_open"></div>
+        </div>
 
-        <label for="order_date">Order Date:</label>
-        <input type="date" name="order_date" value="<?php echo $row['Order_Date']; ?>">
+        <div>
+            <label for="order_date">Order Date:</label>
+            <input type="date" id="order_date" name="order_date" value="<?php echo $row['Order_Date']; ?>">
+            <div class="error" id="error_order_date"></div>
+        </div>
 
-        <label for="release_date">Release Date:</label>
-        <input type="date" name="release_date" value="<?php echo $row['Release_Date']; ?>">
+        <div>
+            <label for="release_date">Release Date:</label>
+            <input type="date" id="release_date" name="release_date" value="<?php echo $row['Release_Date']; ?>">
+            <div class="error" id="error_release_date"></div>
+        </div>
 
-        <label for="due_date">Due Date:</label>
-        <input type="date" name="due_date" value="<?php echo $row['Due_Date']; ?>">
+        <div>
+            <label for="due_date">Due Date:</label>
+            <input type="date" id="due_date" name="due_date" value="<?php echo $row['Due_Date']; ?>">
+            <div class="error" id="error_due_date"></div>
+        </div>
 
-        <label for="sales_job">Sales/Job:</label>
-        <input type="text" name="sales_job" value="<?php echo $row['Sales/Job']; ?>">
+        <div>
+            <label for="sales_job">Sales/Job:</label>
+            <input type="text" id="sales_job" name="sales_job" value="<?php echo $row['Sales/Job']; ?>">
+            <div class="error" id="error_sales_job"></div>
+        </div>
 
-        <label for="wo_stat">WO Stat:</label>
-        <input type="text" name="wo_stat" value="<?php echo $row['WO_Stat']; ?>">
+        <div>
+            <label for="wo_stat">WO Stat:</label>
+            <input type="text" id="wo_stat" name="wo_stat" value="<?php echo $row['WO_Stat']; ?>">
+            <div class="error" id="error_wo_stat"></div>
+        </div>
+
         <div class="form-buttons">
-                <input type="submit" value="Submit">
-                <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
-            </div></form>
-    
-            <script>
+            <input type="submit" onclick="return checkData();" value="Submit">
+            <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
+        </div>
+
+        <script>
+
+            function checkData() {
+
+                var production_line = document.getElementById("production_line").value;
+                if (production_line == "") {
+                    document.getElementById("error_prdline").innerHTML = "Production Line is required!";
+                }
+                else  document.getElementById("error_prdline").innerHTML = "";
+
+                var id = document.getElementById("ID").value;
+                if (id == "") {
+                    document.getElementById("error_IDline").innerHTML = "ID is required!";
+                }
+                else  document.getElementById("error_IDline").innerHTML = "";
+
+                var item_number = document.getElementById("item_number").value;
+                if (item_number == "") {
+                    document.getElementById("error_item_number").innerHTML = "Item Number is required!";
+                
+                }   else  document.getElementById("error_item_number").innerHTML = "";
+
+                var description = document.getElementById("description").value;
+                if (description == "") {
+                    document.getElementById("error_description").innerHTML = "Description is required!";
+                
+                }else  document.getElementById("error_description").innerHTML = "";
+
+                var production_rate = document.getElementById("production_rate").value;
+                if (production_rate == "") {
+                    document.getElementById("error_production_rate").innerHTML = "Production Rate is required!";
+                }else  document.getElementById("error_production_rate").innerHTML = "";
+
+                var rate_hours = document.getElementById("rate_hours").value;
+                if (rate_hours == "") {
+                    document.getElementById("error_rate_hours").innerHTML = "Rate Hours is required!";
+                }else  document.getElementById("error_rate_hours").innerHTML = "";
+
+                var quality_ordered = document.getElementById("quality_ordered").value;
+                if (quality_ordered == "") {
+                    document.getElementById("error_quality_ordered").innerHTML = "Quality Ordered is required!";
+
+                }else  document.getElementById("error_quality_ordered").innerHTML = "";
+
+                var quality_complete = document.getElementById("quality_complete").value;
+                if (quality_complete == "") {
+                    document.getElementById("error_quality_complete").innerHTML = "Quality Complete is required!";
+                }else  document.getElementById("error_quality_complete").innerHTML = "";
+
+                var qty_open = document.getElementById("qty_open").value;
+                if (qty_open == "") {
+                    document.getElementById("error_qty_open").innerHTML = "QTY Open is required!";
+                }else  document.getElementById("error_qty_open").innerHTML = "";
+
+                var order_date = document.getElementById("order_date").value;
+                if (order_date == "") {
+                    document.getElementById("error_order_date").innerHTML = "Order Date is required!";
+                }else  document.getElementById("error_order_date").innerHTML = "";
+
+                var release_date = document.getElementById("release_date").value;
+                if (release_date == "") {
+                    document.getElementById("error_release_date").innerHTML = "Release Date is required!";
+                }else  document.getElementById("error_release_date").innerHTML = "";
+
+                var due_date = document.getElementById("due_date").value;
+                if (due_date == "") {
+                    document.getElementById("error_due_date").innerHTML = "Due Date is required!";
+                }else  document.getElementById("error_due_date").innerHTML = "";
+
+                var sales_job = document.getElementById("sales_job").value;
+                if (sales_job == "") {
+                    document.getElementById("error_sales_job").innerHTML = "Sales/Job is required!";
+                }else  document.getElementById("error_sales_job").innerHTML = "";
+
+                var wo_stat = document.getElementById("wo_stat").value;
+                if (wo_stat == "") {
+                    document.getElementById("error_wo_stat").innerHTML = "WO Stat is required!";
+                }else  document.getElementById("error_wo_stat").innerHTML = "";
+
+                if (production_line == "" || id == "" || item_number == ""||description == ""||production_rate == ""||rate_hours == ""||quality_ordered == ""
+                ||release_date == ""||due_date==""||sales_job==""||wo_stat=="") {
+                    return false;
+                } else {
+                    if (confirm("Are you sure to update new data?")) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+                
+            }
             document.getElementById('myForm').addEventListener('submit', function(event) {
                 event.preventDefault();
 
