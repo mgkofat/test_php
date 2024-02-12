@@ -10,6 +10,7 @@
         <div class="sidebar">
             <a href="display_table.php">Table</a>
             <a href="add_table.php">Add</a>
+            <a href="user_table.php">User</a>
          </div>
     </body>
     <script>

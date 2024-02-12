@@ -24,7 +24,7 @@ h1 {
     margin-bottom: 1.2rem;
 }
 
-#myForm input[type="text"],
+#myForm input[type="text"],#myForm input[type="password"],
 #myForm input[type="date"] {
     width: 67rem;
     padding: 0.6rem;
