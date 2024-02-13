@@ -1,5 +1,6 @@
 body {
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 h1 {
@@ -9,13 +10,10 @@ h1 {
 }
 
 #myForm {
-    max-width: 200rem;
+    max-width: 39.8rem;
     margin: 3% 15rem;
-    margin-left: 32rem;
+    margin-left: 20rem;
     padding: 2rem;
-    background-color: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 70rem;
 }
 
@@ -24,7 +22,7 @@ h1 {
     margin-bottom: 1.2rem;
 }
 
-#myForm  input[type="text"],
+#myForm  input[type="text"],#myForm input[type="password"],
 #myForm  input[type="date"] {
     width: 100%;
     padding: 0.6rem;

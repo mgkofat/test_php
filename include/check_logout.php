@@ -5,7 +5,7 @@
         $updateSql = "UPDATE user SET session = '' WHERE username = '$username'";
     
         if (mysqli_query($conn, $updateSql)) {
-            header("Location: login_form.php");
+            header("Location: index.php");
             session_unset();
             session_destroy();
             exit();

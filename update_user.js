@@ -1,14 +1,4 @@
-$(document).ready(function () {
-    $("#submitBtn").click(function () {
-        return checkData_user();
-    });
-
-    $("#cancelBtn").click(function () {
-        window.location.href = 'display_table.php';
-    });
-});
-
-function checkData_user() {
+function checkData() {
     var user_id = $("#user_id").val();
     if (user_id == "") {
         $("#error_user_id").html("ID is required!");
@@ -54,32 +44,32 @@ function checkData_user() {
     if (user_id==''||password==''||username==''||full_name==''||email==''||phone=='') {
         return false;
     } else {
-        if (confirm("Are you sure to add new data?")) {
+        if (confirm("Are you sure to update new data?")) {
             return true;
         } else {
             return false;
         }
     }
 }
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault(); 
 
-            var formData = new FormData(this);
+    var formData = new FormData(this);
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', this.action, true);
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    alert('Data Inserted Success');
-                    window.location.href = 'user_display.php';
-                } else {
-                    alert('Error: Inserting' + xhr.responseText);
-                }
-            };
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', this.action, true);
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            alert('Data Inserted Success');
+            window.location.href = 'user_display.php';
+        } else {
+            alert('Error: Inserting' + xhr.responseText);
+        }
+    };
 
-            xhr.onerror = function() {
-                alert('Request failed');
-            };
+    xhr.onerror = function() {
+        alert('Request failed');
+    };
 
-            xhr.send(formData);
-        });
+    xhr.send(formData);
+});

@@ -98,7 +98,7 @@
 
         <div class="form-buttons">
             <input type="submit" onclick="return checkData();" value="Submit">
-            <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
+            <button type="button" onclick="window.location.href='user_display.php'">Cancel</button>
         </div>
         <script src="add_table.js"></script>
     </body>

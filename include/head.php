@@ -15,7 +15,7 @@
     </body>
     <script>
         document.getElementById('logoutButton').addEventListener('click', function() {
-            window.location.href = 'login_form.php';
+            window.location.href = 'index.php';
         });
     </script>
     <!-- head -->
