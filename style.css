@@ -1,7 +1,6 @@
       body
       {
       font-family: Arial, sans-serif;
-      overflow-x: hidden;
       }
 
       h1{ 
@@ -146,9 +145,9 @@
   border-radius: 0.2rem;
   border-style: none;
   cursor: pointer;
-  width: 18rem;
+  width: 10rem;
   padding: 0.30rem;
-  margin-left: 19rem;
+  margin-left: 105rem;
   font-size: 1rem;
   margin-top: 1rem;
 }

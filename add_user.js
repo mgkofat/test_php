@@ -9,12 +9,17 @@ $(document).ready(function () {
 });
 
 function checkData_user() {
-    var user_id = $("#user_id").val();
+        var user_id = $("#user_id").val();
     if (user_id == "") {
         $("#error_user_id").html("ID is required!");
+    } else if (!Number.isInteger(Number(user_id))) {
+        $("#error_user_id").html("ID must be a valid number!");
+        var check_user_id = true;
     } else {
         $("#error_user_id").html("");
-    }
+        var check_user_id = false
+}
+
     
     var password = $("#password").val();
     if (password == "") {
@@ -31,27 +36,36 @@ function checkData_user() {
     }
 
     var full_name = $("#full_name").val();
-    if (full_name === "") {
+    if (full_name == "") {
         $("#error_full_name").html("Full Name is required!");
     } else {
         $("#error_full_name").html("");
     }
 
     var email = $("#email").val();
-    if (email === "") {
+    if (email == "") {
         $("#error_email").html("Email is required!");
+        var check_email = false;
+    } else if (!isValidEmail(email)) {
+        $("#error_email").html("Invalid email format!");
+        var check_email = true;
     } else {
         $("#error_email").html("");
     }
 
+
     var phone = $("#phone").val();
-    if (phone === "") {
+    if (phone == "") {
         $("#error_phone").html("Phone is required!");
+        var check_phone = false;
+    } else if (!isValidPhoneNumber(phone)) {
+        $("#error_phone").html("Invalid phone number!");
+        var check_phone = true;
     } else {
         $("#error_phone").html("");
     }
 
-    if (user_id==''||password==''||username==''||full_name==''||email==''||phone=='') {
+    if (user_id==''||password==''||username==''||full_name==''||email==''||phone==''||check_user_id==true||check_email == true||check_phone == true) {
         return false;
     } else {
         if (confirm("Are you sure to add new data?")) {
@@ -61,6 +75,16 @@ function checkData_user() {
         }
     }
 }
+        function isValidEmail(email) {
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function isValidPhoneNumber(phone) {
+            var phoneRegex = /^\d+$/;
+            return phoneRegex.test(phone);
+        }
+
         document.getElementById('myForm').addEventListener('submit', function(event) {
             event.preventDefault(); 
 

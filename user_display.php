@@ -30,7 +30,7 @@ $result = mysqli_query($conn, $sql);
 </head>
 <body>
     <?php include 'include/head.php'; ?>
-    <h1>Table Production</h1>
+    <h1>Table User</h1>
 
     <div class="search-container">
     <form action="" method="GET" class="display">

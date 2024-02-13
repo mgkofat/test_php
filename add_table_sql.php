@@ -4,7 +4,6 @@
     include 'include/check_logout.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $productionLineErr='ProductionLine is ';
         $productionLine = mysqli_real_escape_string($conn, $_POST['production_line']);
         $id = mysqli_real_escape_string($conn, $_POST['id']);
         $itemNumber = mysqli_real_escape_string($conn, $_POST['item_number']);
