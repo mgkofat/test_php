@@ -1,4 +1,4 @@
-<?php  include 'include/function_add_user.php'; ?>
+<?php  include 'add_user_sql.php'; ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -11,7 +11,7 @@
     </head>
     <body>
     <?php include 'include/head.php'; ?>
-        <h1>Add</h1>
+        <h1>Add User</h1>
         <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div>
             <label for="user_id">ID:</label>

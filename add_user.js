@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#submitBtn").click(function () {
-        return checkData();
+        return checkData_user();
     });
 
     $("#cancelBtn").click(function () {
@@ -8,7 +8,7 @@ $(document).ready(function () {
     });
 });
 
-function checkData() {
+function checkData_user() {
     var user_id = $("#user_id").val();
     if (user_id == "") {
         $("#error_user_id").html("ID is required!");

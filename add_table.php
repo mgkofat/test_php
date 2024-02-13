@@ -1,4 +1,4 @@
-<?php include 'include/function_add.php'; ?>
+<?php include 'add_table_sql.php'; ?>
     <!DOCTYPE html>
     <html lang="en">
     <head>

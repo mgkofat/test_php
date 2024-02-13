@@ -1,4 +1,4 @@
-<?php include 'include/function_del.php'; ?>
+<?php include 'delete_table_sql.php'; ?>
    <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -9,7 +9,7 @@
         <title>Confirm Deletion</title>
     </head>
     <body>
-    <?php include 'include/index.php'; ?>
+    <?php include 'include/head.php'; ?>
         <h1>Confirm Delete</h1>
         <p>Are you sure you to delete?</p>
         <div class="container">

@@ -1,4 +1,4 @@
-<?php include 'include/function_update.php'; ?>
+<?php include 'update_table_sql.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
