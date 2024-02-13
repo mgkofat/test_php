@@ -5,7 +5,8 @@ include 'include/check_logout.php';
 if (isset($_GET['search'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_GET['search']);
     $sql = "SELECT Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat FROM production 
-            WHERE Production_Line LIKE '%$searchTerm%' OR
+            WHERE 
+                Production_Line LIKE '%$searchTerm%' OR
               ID LIKE '%$searchTerm%' OR
               Item_Number LIKE '%$searchTerm%' OR
               Description LIKE '%$searchTerm%' OR
@@ -37,7 +38,7 @@ $result = mysqli_query($conn, $sql);
     <title>Display Table</title>
 </head>
 <body>
-    <?php include 'include/index.php'; ?>
+    <?php include 'include/head.php'; ?>
     <h1>Table Production</h1>
 
     <div class="search-container">

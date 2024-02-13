@@ -2,6 +2,7 @@
 include 'include/config.php';
 include 'include/check_session.php';
 include 'include/check_logout.php';
+
 if (isset($_GET['search'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_GET['search']);
     $sql = "SELECT * FROM user
@@ -9,15 +10,15 @@ if (isset($_GET['search'])) {
               user_id LIKE '%$searchTerm%' OR
               email LIKE '%$searchTerm%' OR
               full_name LIKE '%$searchTerm%' OR
-              phone LIKE '%$searchTerm%' OR
-        ORDER BY ID ASC";
+              phone LIKE '%$searchTerm%'
+            ORDER BY user_id ASC";
 } else {
-    $sql = "SELECT * FROM user ORDER BY user_id  ASC";
+    $sql = "SELECT * FROM user ORDER BY user_id ASC";
 }
-
 
 $result = mysqli_query($conn, $sql);
 ?>
+
 <!-- search and pull database -->
 
 <!DOCTYPE html>
@@ -29,7 +30,7 @@ $result = mysqli_query($conn, $sql);
     <title>Display Table</title>
 </head>
 <body>
-    <?php include 'include/index.php'; ?>
+    <?php include 'include/head.php'; ?>
     <h1>Table Production</h1>
 
     <div class="search-container">
