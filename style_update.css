@@ -12,9 +12,12 @@ h1 {
 #myForm {
     max-width: 39.8rem;
     margin: 3% 15rem;
-    margin-left: 30rem;
+    margin-left:37%;
     padding: 2rem;
-    width: 70rem;
+    width: 40%;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
 }
 
 #myForm  label {
@@ -61,3 +64,11 @@ h1 {
   {
     background-color: rgb(216, 214, 214);
   }
+  #status
+{
+    color: green;
+    font-size: 20px;
+    margin-left: 72%;
+    margin-top: 3rem;
+}
+  

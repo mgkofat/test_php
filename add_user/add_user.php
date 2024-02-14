@@ -12,7 +12,6 @@
     <body>
     <?php include '../include/head.php'; ?>
         <h1>Add User</h1>
-        <h1 id="status"></h1>
         <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div>
             <label for="user_id">ID:</label>
@@ -54,6 +53,7 @@
             <input type="button" onclick="return sendData()" id="submitBtn" value="Submit">
             <button type="button" id="cancelBtn">Cancel</button>
         </div>
+        <div class="status" id="status" ></div>
         <script src="add_user.js"></script>
     </body>
     </html>

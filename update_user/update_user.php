@@ -13,7 +13,6 @@
 <body>
 <?php include '../include/head.php'; ?>
     <h1>Edit Data</h1>
-    <h1 id="status"></h1>
     <form id="myForm"  method="post">
         <div>
             <label for="user_id">ID:</label>
@@ -55,6 +54,7 @@
             <input type="button" id="submitBtn" value="Submit" onclick="return checkData();" >
             <button type="button" id="cancelBtn">Cancel</button>
         </div>
+        <div class="status" id="status" ></div>
         <script src="update_user.js"></script>
     <?php
     mysqli_close($conn);

@@ -12,7 +12,6 @@
 <body>
 <?php include '../include/head.php'; ?>
     <h1>Edit Data</h1>
-    <h1 id="status"></h1>
     <form id="myForm"  method="post" >
         <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
         
@@ -104,6 +103,7 @@
             <input type="button" onclick="return checkData();" value="Submit">
             <button type="button" onclick="window.location.href='../display_table.php'">Cancel</button>
         </div>
+        <div class="status" id="status" ></div>
         <script src="update_table.js"></script>
     <?php
     mysqli_close($conn);
