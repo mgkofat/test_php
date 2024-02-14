@@ -4,14 +4,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style_add.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style_add.css">
+        <link rel="stylesheet" href="../style.css">
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <title>Add</title>
     </head>
     <body>
-    <?php include 'include/head.php'; ?>
+    <?php include '../include/head.php'; ?>
         <h1>Add User</h1>
+        <h1 id="status"></h1>
         <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div>
             <label for="user_id">ID:</label>
@@ -50,7 +51,7 @@
         </div>
 
         <div class="form-buttons">
-            <input type="submit" id="submitBtn" value="Submit">
+            <input type="button" onclick="return sendData()" id="submitBtn" value="Submit">
             <button type="button" id="cancelBtn">Cancel</button>
         </div>
         <script src="add_user.js"></script>

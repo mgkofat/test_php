@@ -37,7 +37,7 @@ $result = mysqli_query($conn, $sql);
         <input type="text" name="search" placeholder="Search...">
         <input type="submit" value="Search">
     </form>
-    <td><a href='add_user.php' class='update_button' id='add_user'>Add</a></td>
+    <td><a href='../add_user/add_user.php' class='update_button' id='add_user'>Add</a></td>
     </div>
 
 
@@ -57,8 +57,8 @@ $result = mysqli_query($conn, $sql);
                     <td>{$row['full_name']}</td>
                     <td>{$row['email']}</td>
                     <td>0{$row['phone']}</td>
-                    <td><a href='update_user.php?id={$row['user_id']}' class='update_button'id='update_button_user'style='width: 92%;'>Update</a></td>
-                    <td><a href='delete_user.php?id={$row['user_id']}'class='remove_button' id='remove_button_user'style='width: 93%;'>Remove</a></td>
+                    <td><a href='../update_user/update_user.php?id={$row['user_id']}' class='update_button'id='update_button_user'style='width: 92%;'>Update</a></td>
+                    <td><a href='../delete_user/delete_user.php?id={$row['user_id']}'class='remove_button' id='remove_button_user'style='width: 93%;'>Remove</a></td>
                      </tr>";
         }
         ?>

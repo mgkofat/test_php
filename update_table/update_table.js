@@ -1,14 +1,26 @@
 
 function checkData() {
+   console.log('check data');
+   var production_line = document.getElementById("production_line").value;
+   var id = document.getElementById("ID").value;
+   var item_number = document.getElementById("item_number").value;
+   var description = document.getElementById("description").value;
+   var production_rate = document.getElementById("production_rate").value;
+   var rate_hours = document.getElementById("rate_hours").value;
+   var quality_ordered = document.getElementById("quality_ordered").value;
+   var quality_complete = document.getElementById("quality_complete").value;
+   var qty_open = document.getElementById("qty_open").value;
+   var order_date = document.getElementById("order_date").value;
+   var release_date = document.getElementById("release_date").value;
+   var due_date = document.getElementById("due_date").value;
+   var sales_job = document.getElementById("sales_job").value;
+   var wo_stat = document.getElementById("wo_stat").value; 
 
-     
-    var production_line = document.getElementById("production_line").value;
     if (production_line == "") {
         document.getElementById("error_prdline").innerHTML = "Production Line is required!";
     }
     else  document.getElementById("error_prdline").innerHTML = "";
 
-    var id = document.getElementById("ID").value;
     if (id == "") {
         document.getElementById("error_IDline").innerHTML = "ID is required!";
         var check_id = false;
@@ -18,19 +30,16 @@ function checkData() {
           check_id = true;}
     else  document.getElementById("error_IDline").innerHTML = "";
 
-    var item_number = document.getElementById("item_number").value;
     if (item_number == "") {
         document.getElementById("error_item_number").innerHTML = "Item Number is required!";
     
     }   else  document.getElementById("error_item_number").innerHTML = "";
 
-    var description = document.getElementById("description").value;
     if (description == "") {
         document.getElementById("error_description").innerHTML = "Description is required!";
     
     }else  document.getElementById("error_description").innerHTML = "";
 
-    var production_rate = document.getElementById("production_rate").value;
     if (production_rate == "") {
         document.getElementById("error_production_rate").innerHTML = "Production Rate is required!";
         var check_production_rate = false;
@@ -39,7 +48,6 @@ function checkData() {
      check_production_rate = true;}
     else  document.getElementById("error_production_rate").innerHTML = "";
 
-    var rate_hours = document.getElementById("rate_hours").value;
     if (rate_hours == "") {
         document.getElementById("error_rate_hours").innerHTML = "Rate Hours is required!";
         var check_rate_hours = false;
@@ -48,7 +56,6 @@ function checkData() {
      check_rate_hours = true;}
     else  document.getElementById("error_rate_hours").innerHTML = "";
 
-    var quality_ordered = document.getElementById("quality_ordered").value;
     if (quality_ordered == "") {
         document.getElementById("error_quality_ordered").innerHTML = "Quality Ordered is required!";
         var check_quality_ordered = false;
@@ -57,7 +64,6 @@ function checkData() {
             check_quality_ordered =true;}
     else  document.getElementById("error_quality_ordered").innerHTML = "";
 
-    var quality_complete = document.getElementById("quality_complete").value;
     if (quality_complete == "") {
         document.getElementById("error_quality_complete").innerHTML = "Quality Complete is required!";
         var check_quality_complete = false;
@@ -66,7 +72,6 @@ function checkData() {
         check_quality_complete=true;}
     else  document.getElementById("error_quality_complete").innerHTML = "";
 
-    var qty_open = document.getElementById("qty_open").value;
     if (qty_open == "") {
         document.getElementById("error_qty_open").innerHTML = "QTY Open is required!";
         var check_qty_open = false;
@@ -75,27 +80,22 @@ function checkData() {
     check_qty_open = true;}
     else  document.getElementById("error_qty_open").innerHTML = "";
 
-    var order_date = document.getElementById("order_date").value;
     if (order_date == "") {
         document.getElementById("error_order_date").innerHTML = "Order Date is required!";
     }else  document.getElementById("error_order_date").innerHTML = "";
 
-    var release_date = document.getElementById("release_date").value;
     if (release_date == "") {
         document.getElementById("error_release_date").innerHTML = "Release Date is required!";
     }else  document.getElementById("error_release_date").innerHTML = "";
 
-    var due_date = document.getElementById("due_date").value;
     if (due_date == "") {
         document.getElementById("error_due_date").innerHTML = "Due Date is required!";
     }else  document.getElementById("error_due_date").innerHTML = "";
 
-    var sales_job = document.getElementById("sales_job").value;
     if (sales_job == "") {
         document.getElementById("error_sales_job").innerHTML = "Sales/Job is required!";
     }else  document.getElementById("error_sales_job").innerHTML = "";
 
-    var wo_stat = document.getElementById("wo_stat").value;
     if (wo_stat == "") {
         document.getElementById("error_wo_stat").innerHTML = "WO Stat is required!";
     }else  document.getElementById("error_wo_stat").innerHTML = "";
@@ -104,34 +104,39 @@ function checkData() {
     ||release_date == ""||due_date==""||sales_job==""||wo_stat==""||check_id == true||check_production_rate == true||check_rate_hours == true
     ||check_quality_ordered ==true||check_quality_complete==true||check_qty_open == true) {
         return false;
-    } else {
-        if (confirm("Are you sure to add new data?")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-}
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault();
+    } 
 
-    var formData = new FormData(this);
+    const formData = new FormData();
+    formData.append("production_line",production_line);
+    formData.append("id",id);
+    formData.append("item_number",item_number);
+    formData.append("description",description);
+    formData.append("production_rate",production_rate);
+    formData.append("rate_hours",rate_hours);
+    formData.append("quality_ordered",quality_ordered);
+    formData.append("quality_complete",quality_complete);
+    formData.append("order_date",order_date);
+    formData.append("qty_open",qty_open);
+    formData.append("release_date",release_date);
+    formData.append("due_date",due_date);
+    formData.append("sales_job",sales_job );
+    formData.append("wo_stat",wo_stat);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', this.action, true);
+    xhr.open('POST', 'update_table_sql.php');
+    xhr.send(formData);
+    xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            console.log(xhr.status);
+        }
+
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 400) {
-            alert('Data Update Success');
-            window.location.href = 'display_table.php';
+            console.log("Update data success");
+            document.getElementById("status").innerHTML="Update data success"
         } else {
-            alert('Error: Inserting' + xhr.responseText);
+            console.log("Error"+ xhr.responseText);
+            document.getElementById("status").innerHTML="Error"+ xhr.responseText;
         }
     };
-
-    xhr.onerror = function() {
-        alert('Request failed');
-    };
-
-    xhr.send(formData);
-});
+}

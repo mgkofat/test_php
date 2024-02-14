@@ -4,12 +4,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style_add.css">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../style_add.css">
+        <link rel="stylesheet" href="../style.css">
         <title>Add</title>
     </head>
     <body>
-    <?php include 'include/head.php'; ?>
+    <?php include '../include/head.php'; ?>
         <h1>Add</h1>
         <form id="myForm" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <div>
@@ -97,9 +97,10 @@
         </div>
 
         <div class="form-buttons">
-            <input type="submit" onclick="return checkData();" value="Submit">
-            <button type="button" onclick="window.location.href='user_display.php'">Cancel</button>
+            <input type="button" onclick="return checkData();" value="Submit">
+            <button type="button" onclick="window.location.href='../display_table.php'">Cancel</button>
         </div>
+        <div class="status" id="status" ></div>
         <script src="add_table.js"></script>
     </body>
     </html>

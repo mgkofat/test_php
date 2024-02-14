@@ -1,5 +1,11 @@
 function checkData() {
     var user_id = $("#user_id").val();
+    var password = $("#password").val();
+    var username = $("#username").val();
+    var full_name = $("#full_name").val();
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+
     if (user_id == "") {
         $("#error_user_id").html("ID is required!");
     } else if (!Number.isInteger(Number(user_id))) {
@@ -9,28 +15,25 @@ function checkData() {
         $("#error_user_id").html("");
         var check_user_id = false
 }
-    var password = $("#password").val();
+
     if (password == "") {
         $("#error_password").html("Password is required!");
     } else {
         $("#error_password").html("");
     }
 
-    var username = $("#username").val();
     if (username == "") {
         $("#error_username").html("Username is required!");
     } else {
         $("#error_username").html("");
     }
 
-    var full_name = $("#full_name").val();
     if (full_name == "") {
         $("#error_full_name").html("Full Name is required!");
     } else {
         $("#error_full_name").html("");
     }
 
-    var email = $("#email").val();
     if (email == "") {
         $("#error_email").html("Email is required!");
         var check_email = false;
@@ -41,8 +44,6 @@ function checkData() {
         $("#error_email").html("");
     }
 
-
-    var phone = $("#phone").val();
     if (phone == "") {
         $("#error_phone").html("Phone is required!");
         var check_phone = false;
@@ -55,33 +56,40 @@ function checkData() {
 
     if (user_id==''||password==''||username==''||full_name==''||email==''||phone==''||check_user_id==true||check_email == true||check_phone == true) {
         return false;
-    } else {
-        if (confirm("Are you sure to add new data?")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-}
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    var formData = new FormData(this);
+    } 
+    const formData = new FormData();
+    formData.append("user_id",user_id);
+    formData.append("password",password);
+    formData.append("username",username);
+    formData.append("full_name",full_name);
+    formData.append("email",email);
+    formData.append("phone",phone);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', this.action, true);
+    xhr.open('POST', 'update_user_sql.php');
+    xhr.send(formData);
+    xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            console.log(xhr.status);
+        }
+
     xhr.onload = function() {
         if (xhr.status >= 200 && xhr.status < 400) {
-            alert('Data Inserted Success');
-            window.location.href = 'user_display.php';
+            console.log("Update data success");
+            document.getElementById("status").innerHTML="Update data success"
         } else {
-            alert('Error: Inserting' + xhr.responseText);
+            console.log("Error"+ xhr.responseText);
+            document.getElementById("status").innerHTML="Error"+ xhr.responseText;
         }
     };
+}
 
-    xhr.onerror = function() {
-        alert('Request failed');
-    };
+function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-    xhr.send(formData);
-});
+function isValidPhoneNumber(phone) {
+    var phoneRegex = /^\d+$/;
+    return phoneRegex.test(phone);
+}

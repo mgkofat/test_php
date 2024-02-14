@@ -1,7 +1,7 @@
 <?php
-    include 'include/config.php';
-    include 'include/check_session.php';
-    include 'include/check_logout.php';
+    include '../include/config.php';
+    include '../include/check_session.php';
+    include '../include/check_logout.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productionLine = mysqli_real_escape_string($conn, $_POST['production_line']);
@@ -23,8 +23,7 @@
 
 
         if (mysqli_query($conn, $insertQuery)) {
-            echo "<script>alert('Data Inserted Success');</script>";
-            echo "<script>window.location.href = 'display_table.php';</script>";
+            echo "Add data success";
 
         } else {
             echo "Error: Inserting" . mysqli_error($conn);

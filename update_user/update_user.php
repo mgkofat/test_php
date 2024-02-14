@@ -5,18 +5,19 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_update.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style_update.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Edit Data</title>
 </head>
 <body>
-<?php include 'include/head.php'; ?>
+<?php include '../include/head.php'; ?>
     <h1>Edit Data</h1>
+    <h1 id="status"></h1>
     <form id="myForm"  method="post">
         <div>
             <label for="user_id">ID:</label>
-            <input type="text" id="user_id" name="user_id" value="<?php echo $row['user_id']; ?>">
+            <input type="text" id="user_id" name="user_id" value="<?php echo $row['user_id']; ?>" readonly>
             <div class="error" id="error_user_id" ></div>
         </div>
 
@@ -51,7 +52,7 @@
         </div>
 
         <div class="form-buttons">
-            <input type="submit" id="submitBtn" value="Submit" onclick="return checkData();" >
+            <input type="button" id="submitBtn" value="Submit" onclick="return checkData();" >
             <button type="button" id="cancelBtn">Cancel</button>
         </div>
         <script src="update_user.js"></script>

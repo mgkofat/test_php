@@ -1,7 +1,7 @@
 <?php
-    include 'include/config.php';
-    include 'include/check_session.php';
-    include 'include/check_logout.php';
+    include '../include/config.php';
+    include '../include/check_session.php';
+    include '../include/check_logout.php';
 
 function sanitizeInput($input) {
     return htmlspecialchars(strip_tags($input));
@@ -12,9 +12,10 @@ if (isset($_GET['id'])) {
     $sql = "SELECT * FROM production WHERE ID = $id";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
-
+}
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $productionLine = sanitizeInput($_POST['production_line']);
+        $id = sanitizeInput($_POST['id']);
         $itemNumber = sanitizeInput($_POST['item_number']);
         $description = sanitizeInput($_POST['description']);
         $productionRate = sanitizeInput($_POST['production_rate']);
@@ -30,6 +31,7 @@ if (isset($_GET['id'])) {
 
         $updateSql = "UPDATE production SET 
             Production_Line = '$productionLine',
+            ID = '$id',
             Item_Number = '$itemNumber',
             Description = '$description',
             Production_Rate = '$productionRate',
@@ -45,12 +47,11 @@ if (isset($_GET['id'])) {
             WHERE ID = $id";
 
         if (mysqli_query($conn, $updateSql)) {
-            echo "<script>alert('Data Update Success');</script>";
-            echo "<script>window.location.href = 'display_table.php';</script>";
+            echo "Update data success";
         } else {
             echo "Error: Updating" . mysqli_error($conn);
         }
     }
-}
+
 ?>
 <!-- update database -->

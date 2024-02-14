@@ -12,7 +12,7 @@ h1 {
 #myForm {
     max-width: 39.8rem;
     margin: 3% 15rem;
-    margin-left: 20rem;
+    margin-left: 30rem;
     padding: 2rem;
     width: 70rem;
 }
@@ -30,7 +30,7 @@ h1 {
     box-sizing: border-box;
 }
 
-#myForm  input[type="submit"],
+#myForm  input[type="button"],
 #myForm  button {
     background-color: #333;
     color: #fff;
@@ -43,7 +43,7 @@ h1 {
     margin-top: 1rem;
 }
 
-#myForm  input[type="submit"]:hover,
+#myForm  input[type="button"]:hover,
 #myForm  button:hover {
     background-color: #555;
 }
@@ -52,4 +52,12 @@ h1 {
     font-size: 14px;
     margin-top: -26px;
     margin-bottom: 15px;
+  }
+  #user_id
+  {
+    background-color: rgb(216, 214, 214);
+  }  
+  #ID
+  {
+    background-color: rgb(216, 214, 214);
   }

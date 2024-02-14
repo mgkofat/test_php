@@ -5,14 +5,15 @@
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style_update.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style_update.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Edit Data</title>
 </head>
 <body>
-<?php include 'include/head.php'; ?>
+<?php include '../include/head.php'; ?>
     <h1>Edit Data</h1>
-    <form id="myForm"  method="post">
+    <h1 id="status"></h1>
+    <form id="myForm"  method="post" >
         <input type="hidden" name="id" value="<?php echo $row['ID']; ?>">
         
         <div>
@@ -23,7 +24,7 @@
 
         <div>
             <label for="id">ID:</label>
-            <input type="text" id="ID" name="id" value="<?php echo $row['ID']; ?>">
+            <input type="text" id="ID" name="id" value="<?php echo $row['ID']; ?>"readonly>
             <div class="error" id="error_IDline"></div>
         </div>
 
@@ -100,8 +101,8 @@
         </div>
 
         <div class="form-buttons">
-            <input type="submit" onclick="return checkData();" value="Submit">
-            <button type="button" onclick="window.location.href='display_table.php'">Cancel</button>
+            <input type="button" onclick="return checkData();" value="Submit">
+            <button type="button" onclick="window.location.href='../display_table.php'">Cancel</button>
         </div>
         <script src="update_table.js"></script>
     <?php

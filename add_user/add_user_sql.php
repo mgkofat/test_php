@@ -1,8 +1,8 @@
 
 <?php
-    include 'include/config.php';
-    include 'include/check_session.php';
-    include 'include/check_logout.php';
+    include '../include/config.php';
+    include '../include/check_session.php';
+    include '../include/check_logout.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user_id = $_POST['user_id'];
@@ -18,8 +18,7 @@
 
 
         if (mysqli_query($conn, $sql)) {
-            echo "<script>alert('Data Inserted Success');</script>";
-            echo "<script>window.location.href = 'user_display.php';</script>";
+           echo "Add data success";
 
         } else {
             echo "Error: Inserting" . mysqli_error($conn);

@@ -1,15 +1,22 @@
 $(document).ready(function () {
-    $("#submitBtn").click(function () {
-        return checkData_user();
-    });
 
     $("#cancelBtn").click(function () {
-        window.location.href = 'display_table.php';
+        window.location.href = '../user_display.php';
     });
 });
 
-function checkData_user() {
-        var user_id = $("#user_id").val();
+// ***
+// Send data
+function sendData(){
+    // Recived data
+    var user_id = $("#user_id").val();
+    var password = $("#password").val();
+    var username = $("#username").val();
+    var full_name = $("#full_name").val();
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+
+    // Check data
     if (user_id == "") {
         $("#error_user_id").html("ID is required!");
     } else if (!Number.isInteger(Number(user_id))) {
@@ -18,31 +25,27 @@ function checkData_user() {
     } else {
         $("#error_user_id").html("");
         var check_user_id = false
-}
+   }
 
     
-    var password = $("#password").val();
     if (password == "") {
         $("#error_password").html("Password is required!");
     } else {
         $("#error_password").html("");
     }
 
-    var username = $("#username").val();
     if (username == "") {
         $("#error_username").html("Username is required!");
     } else {
         $("#error_username").html("");
     }
 
-    var full_name = $("#full_name").val();
     if (full_name == "") {
         $("#error_full_name").html("Full Name is required!");
     } else {
         $("#error_full_name").html("");
     }
 
-    var email = $("#email").val();
     if (email == "") {
         $("#error_email").html("Email is required!");
         var check_email = false;
@@ -53,8 +56,6 @@ function checkData_user() {
         $("#error_email").html("");
     }
 
-
-    var phone = $("#phone").val();
     if (phone == "") {
         $("#error_phone").html("Phone is required!");
         var check_phone = false;
@@ -67,43 +68,43 @@ function checkData_user() {
 
     if (user_id==''||password==''||username==''||full_name==''||email==''||phone==''||check_user_id==true||check_email == true||check_phone == true) {
         return false;
-    } else {
-        if (confirm("Are you sure to add new data?")) {
-            return true;
+    } 
+
+    // Send Data
+    const formData = new FormData();
+    formData.append("user_id",user_id);
+    formData.append("password",password);
+    formData.append("username",username);
+    formData.append("full_name",full_name);
+    formData.append("email",email);
+    formData.append("phone",phone);
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'add_user_sql.php');
+    xhr.send(formData);
+    xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            console.log(xhr.status);
+        }
+
+    xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 400) {
+            console.log("Save data success");
+            document.getElementById("status").innerHTML="Save data success"
         } else {
-            return false;
+            console.log("Error"+ xhr.responseText);
+            document.getElementById("status").innerHTML="Error"+ xhr.responseText;
         }
-    }
+    };
 }
-        function isValidEmail(email) {
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
 
-        function isValidPhoneNumber(phone) {
-            var phoneRegex = /^\d+$/;
-            return phoneRegex.test(phone);
-        }
+function isValidEmail(email) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
 
-        document.getElementById('myForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-
-            var formData = new FormData(this);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', this.action, true);
-            xhr.onload = function() {
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    alert('Data Inserted Success');
-                    window.location.href = 'user_display.php';
-                } else {
-                    alert('Error: Inserting' + xhr.responseText);
-                }
-            };
-
-            xhr.onerror = function() {
-                alert('Request failed');
-            };
-
-            xhr.send(formData);
-        });
+function isValidPhoneNumber(phone) {
+    var phoneRegex = /^\d+$/;
+    return phoneRegex.test(phone);
+}

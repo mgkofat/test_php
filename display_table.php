@@ -87,8 +87,8 @@ $result = mysqli_query($conn, $sql);
                     <td class='num'>{$dueDate}</td>
                     <td>{$row['Sales/Job']}</td>
                     <td>{$row['WO_Stat']}</td>
-                    <td><a href='update_table.php?id={$row['ID']}' class='update_button'>Update</a></td>
-                    <td><a href='delete_table.php?id={$row['ID']}' class='remove_button'>Remove</a></td>
+                    <td><a href='../update_table/update_table.php?id={$row['ID']}' class='update_button'>Update</a></td>
+                    <td><a href='../delete_table/delete_table.php?id={$row['ID']}' class='remove_button'>Remove</a></td>
                 </tr>";
         }
         ?>

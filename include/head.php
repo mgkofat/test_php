@@ -8,9 +8,9 @@
             </div>
         </nav>
         <div class="sidebar">
-            <a href="display_table.php">Table</a>
-            <a href="add_table.php">Add</a>
-            <a href="user_display.php">User</a>
+            <a href="../display_table.php">Table</a>
+            <a href="../add_table/add_table.php">Add</a>
+            <a href="../user_display.php">User</a>
          </div>
     </body>
     <script>
