@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $updateSql = "UPDATE user SET session = '$session' WHERE username = '$input_username'";
             mysqli_query($conn, $updateSql);
 
-            header("Location: display_production.php");
+            header("Location: #");
             exit;
         } else {
             if ($_SESSION['session'] != $row['session']) {
@@ -34,35 +34,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-<!-- check login -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <div class="container">
-        <div class="text">
-            Login Form
-        </div>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div class="data">
-                <label for="username">Username:</label>
-                <input type="text" name="username" required><br>
-            </div>
-            <div class="data">
-                <label for="password">Password:</label>
-                <input type="password" name="password" required><br>
-            </div>
-            <div class="btn">
-                <div class="inner"></div>
-                <button type="submit">Login</button>
-            </div>
-             <?php if ($error_message !== "") { ?>
-            <div class="error-message"><?php echo $error_message; ?></div>
-        <?php } ?>
-        </form>
-    </div>
-</body>
-</html>
