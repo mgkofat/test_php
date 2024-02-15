@@ -1,4 +1,5 @@
 function checkData() {
+    // getdata
     var production_line = document.getElementById("production_line").value;
     var id = document.getElementById("ID").value;
     var item_number = document.getElementById("item_number").value;
@@ -14,19 +15,27 @@ function checkData() {
     var sales_job = document.getElementById("sales_job").value;
     var wo_stat = document.getElementById("wo_stat").value;
 
+
+    // checkdata
     if (production_line == "") {
         document.getElementById("error_prdline").innerHTML = "Production Line is required!";
     }
-    else  document.getElementById("error_prdline").innerHTML = "";
+    else  {
+        document.getElementById("error_prdline").innerHTML = "";
+    }
+    // 
 
     if (id == "") {
         document.getElementById("error_IDline").innerHTML = "ID is required!";
         var check_id = false;
     }
-    else if (!Number.isInteger(Number(id))) 
-         {document.getElementById("error_IDline").innerHTML = "ID must be a valid number!";
-          check_id = true;}
-    else  document.getElementById("error_IDline").innerHTML = "";
+    else if (!Number.isInteger(Number(id))) {
+        document.getElementById("error_IDline").innerHTML = "ID must be a valid number!";
+        check_id = true;}
+    else {
+        document.getElementById("error_IDline").innerHTML = "";
+    }
+    // 
 
     if (item_number == "") {
         document.getElementById("error_item_number").innerHTML = "Item Number is required!";
@@ -104,6 +113,7 @@ function checkData() {
         return false;
     } 
     
+    // form data
     const formData = new FormData();
     formData.append("production_line",production_line);
     formData.append("id",id);
@@ -120,6 +130,7 @@ function checkData() {
     formData.append("sales_job",sales_job );
     formData.append("wo_stat",wo_stat);
 
+    // sent data by ajax
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'add_table_sql.php');
     xhr.send(formData);
