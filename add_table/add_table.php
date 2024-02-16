@@ -95,6 +95,21 @@
             <input type="text" id="wo_stat" name="wo_stat">
             <div class="error" id="error_wo_stat"></div>
         </div>
+        <div>
+        <label for="username">Username:</label>
+        <select id="username" name="username">
+        <?php
+        include '../include/config.php';
+        echo "<option value=''>Select User</option>";
+        $result = mysqli_query($conn, "SELECT * FROM user");
+        while ($user_row = mysqli_fetch_assoc($result)) {
+            $selected = ($user_row['user_id'] == $row['user_id']) ? 'selected' : '';
+            echo "<option value='" . $user_row['user_id'] . "' $selected>" . $user_row['username'] . "</option>";
+        }
+        mysqli_close($conn);
+        ?>
+        </select>
+        </div>
 
         <div class="form-buttons">
             <input type="button" onclick="return checkData();" value="Submit">

@@ -18,9 +18,10 @@
         $dueDate = date('Y-m-d', strtotime(mysqli_real_escape_string($conn, $_POST['due_date'])));
         $salesJob = mysqli_real_escape_string($conn, $_POST['sales_job']);
         $woStat = mysqli_real_escape_string($conn, $_POST['wo_stat']);
-        if (isset($productionLine)){
-        $insertQuery = "INSERT INTO production (Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat) VALUES ('$productionLine', '$id', '$itemNumber', '$description', '$productionRate', '$rateHours', '$qualityOrdered', '$qualityComplete', '$qtyOpen', '$orderDate', '$releaseDate', '$dueDate', '$salesJob', '$woStat')";
+        $user_id =  $_POST['user_id'];
 
+        if (isset($productionLine)){
+            $insertQuery = "INSERT INTO production (Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat, user_id) VALUES ('$productionLine', '$id', '$itemNumber', '$description', '$productionRate', '$rateHours', '$qualityOrdered', '$qualityComplete', '$qtyOpen', '$orderDate', '$releaseDate', '$dueDate', '$salesJob', '$woStat', '$user_id')";
 
         if (mysqli_query($conn, $insertQuery)) {
             echo "Add data success";

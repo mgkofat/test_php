@@ -56,7 +56,7 @@ $result = mysqli_query($conn, $sql);
                     <td>{$row['user_id']}</td>
                     <td>{$row['full_name']}</td>
                     <td>{$row['email']}</td>
-                    <td>0{$row['phone']}</td>
+                    <td>{$row['phone']}</td>
                     <td><a href='../update_user/update_user.php?id={$row['user_id']}' class='update_button'id='update_button_user'style='width: 92%;'>Update</a></td>
                     <td><a href='../delete_user/delete_user.php?id={$row['user_id']}'class='remove_button' id='remove_button_user'style='width: 93%;'>Remove</a></td>
                      </tr>";

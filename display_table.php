@@ -4,26 +4,30 @@ include 'include/check_session.php';
 include 'include/check_logout.php';
 if (isset($_GET['search'])) {
     $searchTerm = mysqli_real_escape_string($conn, $_GET['search']);
-    $sql = "SELECT Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat FROM production 
+    $sql = "SELECT p.Production_Line, p.ID, p.Item_Number, p.Description, p.Production_Rate, p.Rate_Hours, p.Quality_Ordered, p.Quality_Complete, p.QTY_Open, p.Order_Date, p.Release_Date, p.Due_Date, p.`Sales/Job`, p.WO_Stat, u.username
+            FROM production p
+            LEFT JOIN user u ON p.user_id = u.user_id
             WHERE 
-                Production_Line LIKE '%$searchTerm%' OR
-              ID LIKE '%$searchTerm%' OR
-              Item_Number LIKE '%$searchTerm%' OR
-              Description LIKE '%$searchTerm%' OR
-              Production_Rate LIKE '%$searchTerm%' OR
-              Rate_Hours LIKE '%$searchTerm%' OR
-              Quality_Ordered LIKE '%$searchTerm%' OR
-              Quality_Complete LIKE '%$searchTerm%' OR
-              QTY_Open LIKE '%$searchTerm%' OR
-              Order_Date LIKE '%$searchTerm%' OR
-              Release_Date LIKE '%$searchTerm%' OR
-              Due_Date LIKE '%$searchTerm%' OR
-              `Sales/Job` LIKE '%$searchTerm%' OR
-              WO_Stat LIKE '%$searchTerm%'
-        ORDER BY ID ASC";
+                p.Production_Line LIKE '%$searchTerm%' OR
+                p.ID LIKE '%$searchTerm%' OR
+                p.Item_Number LIKE '%$searchTerm%' OR
+                p.Description LIKE '%$searchTerm%' OR
+                p.Production_Rate LIKE '%$searchTerm%' OR
+                p.Rate_Hours LIKE '%$searchTerm%' OR
+                p.Quality_Ordered LIKE '%$searchTerm%' OR
+                p.Quality_Complete LIKE '%$searchTerm%' OR
+                p.QTY_Open LIKE '%$searchTerm%' OR
+                p.Order_Date LIKE '%$searchTerm%' OR
+                p.Release_Date LIKE '%$searchTerm%' OR
+                p.Due_Date LIKE '%$searchTerm%' OR
+                p.`Sales/Job` LIKE '%$searchTerm%' OR
+                p.WO_Stat LIKE '%$searchTerm%'
+            ORDER BY p.ID ASC";
 } else {
-    $sql = "SELECT Production_Line, ID, Item_Number, Description, Production_Rate, Rate_Hours, Quality_Ordered, Quality_Complete, QTY_Open, Order_Date, Release_Date, Due_Date, `Sales/Job`, WO_Stat FROM production ORDER BY ID ASC";
-}
+    $sql = "SELECT p.Production_Line, p.ID, p.Item_Number, p.Description, p.Production_Rate, p.Rate_Hours, p.Quality_Ordered, p.Quality_Complete, p.QTY_Open, p.Order_Date, p.Release_Date, p.Due_Date, p.`Sales/Job`, p.WO_Stat, u.username
+    FROM production p
+    LEFT JOIN user u ON p.user_id = u.user_id
+    ORDER BY p.ID ASC";}
 
 $result = mysqli_query($conn, $sql);
 ?>
@@ -64,8 +68,9 @@ $result = mysqli_query($conn, $sql);
             <th class='num'>Due Date</th>
             <th>Sales/Job</th>
             <th>WO Stat</th>
+            <th>Username</th>
         </tr>
-
+        
         <?php
         while ($row = mysqli_fetch_assoc($result)) {
             $orderDate = date("d/m/Y", strtotime($row['Order_Date']));
@@ -87,6 +92,7 @@ $result = mysqli_query($conn, $sql);
                     <td class='num'>{$dueDate}</td>
                     <td>{$row['Sales/Job']}</td>
                     <td>{$row['WO_Stat']}</td>
+                    <td>{$row['username']}</td>
                     <td><a href='../update_table/update_table.php?id={$row['ID']}' class='update_button'>Update</a></td>
                     <td><a href='../delete_table/delete_table.php?id={$row['ID']}' class='remove_button'>Remove</a></td>
                 </tr>";

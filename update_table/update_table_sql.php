@@ -28,10 +28,10 @@ if (isset($_GET['id'])) {
         $dueDate = sanitizeInput($_POST['due_date']);
         $salesJob = sanitizeInput($_POST['sales_job']);
         $woStat = sanitizeInput($_POST['wo_stat']);
+        $user_id =  $_POST['user_id'];
 
         $updateSql = "UPDATE production SET 
             Production_Line = '$productionLine',
-            ID = '$id',
             Item_Number = '$itemNumber',
             Description = '$description',
             Production_Rate = '$productionRate',
@@ -43,7 +43,8 @@ if (isset($_GET['id'])) {
             Release_Date = '$releaseDate',
             Due_Date = '$dueDate',
             `Sales/Job` = '$salesJob',
-            WO_Stat = '$woStat'
+            WO_Stat = '$woStat',
+            user_id = '$user_id'
             WHERE ID = $id";
 
         if (mysqli_query($conn, $updateSql)) {
